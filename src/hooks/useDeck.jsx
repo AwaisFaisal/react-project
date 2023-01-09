@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+z; // import { useCallback } from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
+import BoardContext from "../BoardContext";
 
-export const useDeck = () => {
-  const [deck, setDeck] = useState([]);
+const useDeck = () => {
+  const { setDeck } = useContext(BoardContext);
 
   useEffect(() => {
     const fetchDeck = async () => {
@@ -16,12 +19,8 @@ export const useDeck = () => {
     fetchDeck();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(deck);
-  // }, [deck]);
-
   // shuffle the deck
-  let shuffle = () => {
+  let shuffle = (deck) => {
     let shuffledDeck = [...deck];
     for (let i = shuffledDeck.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -30,5 +29,7 @@ export const useDeck = () => {
     setDeck(shuffledDeck);
   };
 
-  return [deck, setDeck, shuffle];
+  return [shuffle];
 };
+
+export default useDeck;

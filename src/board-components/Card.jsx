@@ -1,10 +1,11 @@
 import React from "react";
 import { useDrag } from "react-dnd";
+import { ItemTypes } from "../constants/itemTypes";
 
 const Card = ({ card, id }) => {
-  console.log(card);
+  console.log(id);
   const [, drag] = useDrag({
-    type: "CARD",
+    type: ItemTypes.CARD,
     item: id,
   });
   return (

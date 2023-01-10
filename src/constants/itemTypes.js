@@ -1,2 +1,3 @@
-export const UNIT = "unit";
-export const SPELL = "spell";
+export const ItemTypes = {
+  CARD: "Card",
+};

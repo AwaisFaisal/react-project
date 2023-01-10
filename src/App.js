@@ -1,7 +1,8 @@
 import Board from "./board-components/Board";
 import { useState } from "react";
-import { TouchBackend } from "react-dnd-touch-backend";
+
 import { DndProvider } from "react-dnd";
+import { TouchBackend } from "react-dnd-touch-backend";
 import BoardContext from "./BoardContext";
 
 function App() {
@@ -10,25 +11,28 @@ function App() {
   const [field, setField] = useState([]);
   const [discardPile, setDiscardPile] = useState([]);
 
-  const options = { enableMouseEvents: true };
+  const opts = {
+    enableMouseEvents: true,
+    enableTouchEvents: false,
+  };
 
   return (
-    <BoardContext.Provider
-      value={{
-        hand,
-        setHand,
-        deck,
-        setDeck,
-        field,
-        setField,
-        discardPile,
-        setDiscardPile,
-      }}
-    >
-      <DndProvider backend={TouchBackend} options={options}>
+    <DndProvider backend={TouchBackend} options={opts}>
+      <BoardContext.Provider
+        value={{
+          hand,
+          setHand,
+          deck,
+          setDeck,
+          field,
+          setField,
+          discardPile,
+          setDiscardPile,
+        }}
+      >
         <Board />
-      </DndProvider>
-    </BoardContext.Provider>
+      </BoardContext.Provider>
+    </DndProvider>
   );
 }
 
